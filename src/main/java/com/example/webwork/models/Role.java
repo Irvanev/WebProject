@@ -1,5 +1,6 @@
 package com.example.webwork.models;
 
+import com.example.webwork.models.Enums.RoleEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,5 +14,23 @@ public class Role extends Base {
     @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE)
     private List<Users> users;
     @Column(name="name", length = 11, nullable = false)
-    private String name;
+    private RoleEnum roleEnum;
+
+    protected Role() {};
+
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
+    }
+
+    public RoleEnum getRoleEnum() {
+        return roleEnum;
+    }
+
+    public void setRoleEnum(RoleEnum roleEnum) {
+        this.roleEnum = roleEnum;
+    }
 }

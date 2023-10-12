@@ -1,52 +1,49 @@
-package com.example.webwork.models;
-
-import jakarta.persistence.*;
+package com.example.webwork.dtos;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
 
-@Entity
-public class Users extends Base {
-
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
-
-    @OneToMany(mappedBy = "users", cascade = CascadeType.REMOVE)
-    private List<Offer> offers;
-    @Column(name="userName", length = 255, nullable = false)
+public class UsersDto {
+    private Long id;
+    private RoleDto role;
     private String userName;
-    @Column(name="password", length = 255, nullable = false)
     private String password;
-    @Column(name="firstName", length = 255, nullable = false)
     private String firstName;
-    @Column(name="lastName", length = 255, nullable = false)
     private String lastName;
     private boolean isActive;
-    @Column(name="imageURL", length = 255, nullable = false)
     private String imageURL;
-    @Column(name="created", length = 6, nullable = false)
     private LocalDateTime created;
-    @Column(name="modified", length = 6, nullable = false)
     private LocalDateTime modified;
 
-    protected Users() {};
+    protected UsersDto() {};
 
-    public Role getRole() {
+    public UsersDto(Long id, RoleDto role, String userName, String password, String firstName, String lastName,
+                    boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
+        this.id = id;
+        this.role = role;
+        this.userName = userName;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isActive = isActive;
+        this.imageURL = imageURL;
+        this.created = created;
+        this.modified = modified;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public RoleDto getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(RoleDto role) {
         this.role = role;
-    }
-
-    public List<Offer> getOffers() {
-        return offers;
-    }
-
-    public void setOffers(List<Offer> offers) {
-        this.offers = offers;
     }
 
     public String getUserName() {
@@ -111,5 +108,21 @@ public class Users extends Base {
 
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
+    }
+
+    @Override
+    public String toString() {
+        return "UsersDto{" +
+                "id=" + id +
+                ", role=" + role +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", isActive=" + isActive +
+                ", imageURL='" + imageURL + '\'' +
+                ", created=" + created +
+                ", modified=" + modified +
+                '}';
     }
 }
