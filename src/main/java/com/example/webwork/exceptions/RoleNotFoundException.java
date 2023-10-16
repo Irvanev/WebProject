@@ -1,4 +1,4 @@
-package com.example.webwork.controllers.exceptions;
+package com.example.webwork.exceptions;
 
 public class RoleNotFoundException extends RuntimeException {
     public RoleNotFoundException(Long id) {

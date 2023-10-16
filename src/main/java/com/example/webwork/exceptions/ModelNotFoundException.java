@@ -1,4 +1,4 @@
-package com.example.webwork.controllers.exceptions;
+package com.example.webwork.exceptions;
 
 public class ModelNotFoundException extends RuntimeException {
     public ModelNotFoundException(Long id) {

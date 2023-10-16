@@ -1,4 +1,4 @@
-package com.example.webwork.controllers.exceptions;
+package com.example.webwork.exceptions;
 
 public class UsersNotFoundException extends RuntimeException {
     public UsersNotFoundException(Long id) {

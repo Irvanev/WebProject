@@ -1,7 +1,7 @@
 package com.example.webwork.services.Impl;
 
-import com.example.webwork.controllers.exceptions.ModelConflictException;
-import com.example.webwork.controllers.exceptions.ModelNotFoundException;
+import com.example.webwork.exceptions.ModelConflictException;
+import com.example.webwork.exceptions.ModelNotFoundException;
 import com.example.webwork.dtos.ModelDto;
 import com.example.webwork.models.Model;
 import com.example.webwork.repositories.ModelRepository;

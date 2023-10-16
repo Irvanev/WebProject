@@ -1,7 +1,7 @@
 package com.example.webwork.services.Impl;
 
-import com.example.webwork.controllers.exceptions.RoleConflictException;
-import com.example.webwork.controllers.exceptions.RoleNotFoundException;
+import com.example.webwork.exceptions.RoleConflictException;
+import com.example.webwork.exceptions.RoleNotFoundException;
 import com.example.webwork.dtos.RoleDto;
 import com.example.webwork.models.Role;
 import com.example.webwork.repositories.RoleRepository;

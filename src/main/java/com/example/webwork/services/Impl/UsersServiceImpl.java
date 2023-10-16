@@ -1,12 +1,11 @@
 package com.example.webwork.services.Impl;
 
-import com.example.webwork.controllers.exceptions.UsersConflictException;
-import com.example.webwork.controllers.exceptions.UsersNotFoundException;
+import com.example.webwork.exceptions.UsersConflictException;
+import com.example.webwork.exceptions.UsersNotFoundException;
 import com.example.webwork.dtos.UsersDto;
 import com.example.webwork.models.Users;
 import com.example.webwork.repositories.UsersRepository;
 import com.example.webwork.services.UsersService;
-import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

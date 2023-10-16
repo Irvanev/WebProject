@@ -1,7 +1,7 @@
 package com.example.webwork.services.Impl;
 
-import com.example.webwork.controllers.exceptions.OfferConflictException;
-import com.example.webwork.controllers.exceptions.OfferNotFoundException;
+import com.example.webwork.exceptions.OfferConflictException;
+import com.example.webwork.exceptions.OfferNotFoundException;
 import com.example.webwork.dtos.OfferDto;
 import com.example.webwork.models.Offer;
 import com.example.webwork.repositories.OfferRepository;

@@ -1,7 +1,7 @@
 package com.example.webwork.services.Impl;
 
-import com.example.webwork.controllers.exceptions.BrandConflictException;
-import com.example.webwork.controllers.exceptions.BrandNotFoundException;
+import com.example.webwork.exceptions.BrandConflictException;
+import com.example.webwork.exceptions.BrandNotFoundException;
 import com.example.webwork.dtos.BrandDto;
 import com.example.webwork.models.Brand;
 import com.example.webwork.repositories.BrandRepository;

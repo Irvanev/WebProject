@@ -67,7 +67,9 @@ public class DataInitializer implements CommandLineRunner {
                 "http://uebubfueb", 20, price1, TransmissionEnum.AUTOMATIC, 2022, created1, modified2);
         OfferDto offer2 = new OfferDto(null, model2, user1, "Cool Motorcycle", EngineEnum.GASOLINE,
                 "http://hewbfhbvehf", 2, price2, TransmissionEnum.AUTOMATIC, 2022, created2, modified2);
-        offer1 = offerService.register(offer1);
-        offer2 = offerService.register(offer2);
+        offerService.register(offer1);
+        offerService.register(offer2);
+
+        roleService.delete(1L);
     }
 }
