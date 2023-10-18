@@ -5,9 +5,10 @@ import com.example.webwork.models.enums.TransmissionEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class OfferDto {
-    private Long id;
+    private UUID id;
     private ModelDto model;
     private UsersDto users;
     private String description;
@@ -22,7 +23,7 @@ public class OfferDto {
 
     protected OfferDto() {};
 
-    public  OfferDto(Long id, ModelDto model, UsersDto users, String description, EngineEnum engineEnum, String imageURL,
+    public  OfferDto(UUID id, ModelDto model, UsersDto users, String description, EngineEnum engineEnum, String imageURL,
                     int mileage, BigDecimal price, TransmissionEnum transmissionEnum, int year, LocalDateTime created,
                     LocalDateTime modified) {
         this.id = id;
@@ -39,11 +40,11 @@ public class OfferDto {
         this.modified = modified;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

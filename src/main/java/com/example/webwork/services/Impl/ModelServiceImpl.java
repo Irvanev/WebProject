@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,11 +29,12 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public ModelDto register(ModelDto model) {
-        Model b = modelMapper.map(model, Model.class);
-        if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
-            return modelMapper.map(modelRepository.save(b), ModelDto.class);
+        Model m = modelMapper.map(model, Model.class);
+        UUID modelId = m.getId();
+        if (modelId == null || modelRepository.findById(modelId).isEmpty()) {
+            return modelMapper.map(modelRepository.save(m), ModelDto.class);
         } else {
-            throw new ModelConflictException("A model with this id already exists");
+            throw new ModelConflictException("A brand with this id already exists");
         }
     }
 
@@ -42,12 +44,12 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
-    public Optional<ModelDto> get(Long id) {
+    public Optional<ModelDto> get(UUID id) {
         return Optional.ofNullable(modelMapper.map(modelRepository.findById(id), ModelDto.class));
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         if (modelRepository.findById(id).isPresent()) {
             modelRepository.deleteById(id);
         } else {

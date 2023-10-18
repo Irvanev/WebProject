@@ -1,7 +1,9 @@
 package com.example.webwork.exceptions;
 
+import java.util.UUID;
+
 public class ModelNotFoundException extends RuntimeException {
-    public ModelNotFoundException(Long id) {
+    public ModelNotFoundException(UUID id) {
         super("Could not find model " + id);
     }
 }

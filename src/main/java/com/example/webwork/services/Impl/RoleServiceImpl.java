@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,9 +29,10 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleDto register(RoleDto role) {
-        Role b = modelMapper.map(role, Role.class);
-        if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
-            return modelMapper.map(roleRepository.save(b), RoleDto.class);
+        Role r = modelMapper.map(role, Role.class);
+        UUID roleId = r.getId();
+        if (roleId == null || roleRepository.findById(roleId).isEmpty()) {
+            return modelMapper.map(roleRepository.save(r), RoleDto.class);
         } else {
             throw new RoleConflictException("A role with this id already exists");
         }
@@ -42,12 +44,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Optional<RoleDto> get(Long id) {
+    public Optional<RoleDto> get(UUID id) {
         return Optional.ofNullable(modelMapper.map(roleRepository.findById(id), RoleDto.class));
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         if (roleRepository.findById(id).isPresent()) {
             roleRepository.deleteById(id);
         } else {

@@ -3,9 +3,10 @@ package com.example.webwork.dtos;
 import com.example.webwork.models.enums.CategoryEnum;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class ModelDto {
-    private Long id;
+    private UUID id;
     private BrandDto brand;
     private String name;
     private CategoryEnum categoryEnum;
@@ -17,7 +18,7 @@ public class ModelDto {
 
     protected ModelDto() {};
 
-    public ModelDto(Long id, BrandDto brand, String name, CategoryEnum categoryEnum, String imageURL, int startYear,
+    public ModelDto(UUID id, BrandDto brand, String name, CategoryEnum categoryEnum, String imageURL, int startYear,
                     int endYear, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.brand = brand;
@@ -30,11 +31,11 @@ public class ModelDto {
         this.modified = modified;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

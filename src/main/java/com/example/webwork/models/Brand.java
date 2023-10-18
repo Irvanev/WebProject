@@ -1,9 +1,6 @@
 package com.example.webwork.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -12,7 +9,7 @@ import java.util.List;
 @Entity
 public class Brand extends Base {
 
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "brand", cascade = CascadeType.REMOVE)
     private List<Model> models;
 
     @Column(name="name", length = 255, nullable = false)

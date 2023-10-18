@@ -1,9 +1,10 @@
 package com.example.webwork.dtos;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class UsersDto {
-    private Long id;
+    private UUID id;
     private RoleDto role;
     private String userName;
     private String password;
@@ -16,7 +17,7 @@ public class UsersDto {
 
     protected UsersDto() {};
 
-    public UsersDto(Long id, RoleDto role, String userName, String password, String firstName, String lastName,
+    public UsersDto(UUID id, RoleDto role, String userName, String password, String firstName, String lastName,
                     boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.role = role;
@@ -30,11 +31,11 @@ public class UsersDto {
         this.modified = modified;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -2,22 +2,24 @@ package com.example.webwork.dtos;
 
 import com.example.webwork.models.enums.RoleEnum;
 
+import java.util.UUID;
+
 public class RoleDto {
-    private Long id;
+    private UUID id;
     private RoleEnum roleEnum;
 
     protected RoleDto() {};
 
-    public RoleDto(Long id, RoleEnum roleEnum) {
+    public RoleDto(UUID id, RoleEnum roleEnum) {
         this.id = id;
         this.roleEnum = roleEnum;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

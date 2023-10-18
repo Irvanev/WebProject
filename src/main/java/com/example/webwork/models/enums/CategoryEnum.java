@@ -1,8 +1,15 @@
 package com.example.webwork.models.enums;
 
 public enum CategoryEnum {
-    Car,
-    Bus,
-    Truck,
-    Motorcycle
+    Car ("Машина", 0),
+    Bus ("Автобус", 1),
+    Truck ("Грузовик", 2),
+    Motorcycle ("Мотоцикл", 3);
+    private String type;
+    private int number;
+
+    CategoryEnum(String type, int number) {
+        this.type = type;
+        this.number = number;
+    }
 }

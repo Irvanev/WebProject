@@ -2,18 +2,20 @@ package com.example.webwork.models;
 
 import jakarta.persistence.*;
 
+import java.util.UUID;
+
 @MappedSuperclass
 public abstract class Base {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
-    protected Long id;
+    protected UUID id;
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 }

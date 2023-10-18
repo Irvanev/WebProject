@@ -4,15 +4,16 @@ import com.example.webwork.dtos.ModelDto;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface ModelService {
     ModelDto register(ModelDto model);
 
     List<ModelDto> getAll();
 
-    Optional<ModelDto> get(Long id);
+    Optional<ModelDto> get(UUID id);
 
-    void delete(Long id);
+    void delete(UUID id);
 
     ModelDto update(ModelDto model);
 }

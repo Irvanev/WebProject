@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,9 +29,10 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDto register(UsersDto users) {
-        Users b = modelMapper.map(users, Users.class);
-        if (b.getId() == null || b.getId() == 0 || get(b.getId()).isEmpty()) {
-            return modelMapper.map(usersRepository.save(b), UsersDto.class);
+        Users u = modelMapper.map(users, Users.class);
+        UUID userId = u.getId();
+        if (u.getId() == null || usersRepository.findById(userId).isEmpty()) {
+            return modelMapper.map(usersRepository.save(u), UsersDto.class);
         } else {
             throw new UsersConflictException("A user with this id already exists");
         }
@@ -42,12 +44,12 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<UsersDto> get(Long id) {
+    public Optional<UsersDto> get(UUID id) {
         return Optional.ofNullable(modelMapper.map(usersRepository.findById(id), UsersDto.class));
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(UUID id) {
         if (usersRepository.findById(id).isPresent()) {
             usersRepository.deleteById(id);
         } else {
