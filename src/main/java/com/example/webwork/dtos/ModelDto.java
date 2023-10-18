@@ -1,6 +1,6 @@
 package com.example.webwork.dtos;
 
-import com.example.webwork.models.Enums.CategoryEnum;
+import com.example.webwork.models.enums.CategoryEnum;
 
 import java.time.LocalDateTime;
 
@@ -117,3 +117,5 @@ public class ModelDto {
                 '}';
     }
 }
+
+// Инициализировать Enum's в скобочках

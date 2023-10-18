@@ -1,6 +1,6 @@
 package com.example.webwork.dtos;
 
-import com.example.webwork.models.Enums.RoleEnum;
+import com.example.webwork.models.enums.RoleEnum;
 
 public class RoleDto {
     private Long id;

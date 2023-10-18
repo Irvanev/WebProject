@@ -1,7 +1,7 @@
 package com.example.webwork.models;
 
-import com.example.webwork.models.Enums.EngineEnum;
-import com.example.webwork.models.Enums.TransmissionEnum;
+import com.example.webwork.models.enums.EngineEnum;
+import com.example.webwork.models.enums.TransmissionEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -9,7 +9,6 @@ import jakarta.persistence.ManyToOne;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 public class Offer extends Base {

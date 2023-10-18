@@ -1,7 +1,7 @@
 package com.example.webwork.dtos;
 
-import com.example.webwork.models.Enums.EngineEnum;
-import com.example.webwork.models.Enums.TransmissionEnum;
+import com.example.webwork.models.enums.EngineEnum;
+import com.example.webwork.models.enums.TransmissionEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -22,7 +22,7 @@ public class OfferDto {
 
     protected OfferDto() {};
 
-    public OfferDto(Long id, ModelDto model, UsersDto users, String description, EngineEnum engineEnum, String imageURL,
+    public  OfferDto(Long id, ModelDto model, UsersDto users, String description, EngineEnum engineEnum, String imageURL,
                     int mileage, BigDecimal price, TransmissionEnum transmissionEnum, int year, LocalDateTime created,
                     LocalDateTime modified) {
         this.id = id;

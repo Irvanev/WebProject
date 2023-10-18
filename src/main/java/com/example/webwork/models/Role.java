@@ -1,6 +1,6 @@
 package com.example.webwork.models;
 
-import com.example.webwork.models.Enums.RoleEnum;
+import com.example.webwork.models.enums.RoleEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
