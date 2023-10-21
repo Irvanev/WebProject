@@ -1,4 +1,4 @@
-package com.example.webwork.models.enums;
+package com.example.webwork.constants;
 
 public enum EngineEnum {
     GASOLINE ("Бензин", 0),

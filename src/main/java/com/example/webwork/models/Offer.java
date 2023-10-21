@@ -1,7 +1,7 @@
 package com.example.webwork.models;
 
-import com.example.webwork.models.enums.EngineEnum;
-import com.example.webwork.models.enums.TransmissionEnum;
+import com.example.webwork.constants.EngineEnum;
+import com.example.webwork.constants.TransmissionEnum;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

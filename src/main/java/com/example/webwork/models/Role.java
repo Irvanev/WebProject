@@ -1,6 +1,6 @@
 package com.example.webwork.models;
 
-import com.example.webwork.models.enums.RoleEnum;
+import com.example.webwork.constants.RoleEnum;
 import jakarta.persistence.*;
 
 import java.util.List;

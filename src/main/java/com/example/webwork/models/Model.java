@@ -1,6 +1,6 @@
 package com.example.webwork.models;
 
-import com.example.webwork.models.enums.CategoryEnum;
+import com.example.webwork.constants.CategoryEnum;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

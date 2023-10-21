@@ -1,6 +1,6 @@
 package com.example.webwork.dtos;
 
-import com.example.webwork.models.enums.RoleEnum;
+import com.example.webwork.constants.RoleEnum;
 
 import java.util.UUID;
 

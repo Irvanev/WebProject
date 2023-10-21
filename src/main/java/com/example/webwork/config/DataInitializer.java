@@ -1,7 +1,10 @@
-package com.example.webwork.init;
+package com.example.webwork.config;
 
+import com.example.webwork.constants.CategoryEnum;
+import com.example.webwork.constants.EngineEnum;
+import com.example.webwork.constants.RoleEnum;
+import com.example.webwork.constants.TransmissionEnum;
 import com.example.webwork.dtos.*;
-import com.example.webwork.models.enums.*;
 import com.example.webwork.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,6 @@
 package com.example.webwork.dtos;
 
-import com.example.webwork.models.enums.CategoryEnum;
+import com.example.webwork.constants.CategoryEnum;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

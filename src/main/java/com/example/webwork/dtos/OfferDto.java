@@ -1,7 +1,7 @@
 package com.example.webwork.dtos;
 
-import com.example.webwork.models.enums.EngineEnum;
-import com.example.webwork.models.enums.TransmissionEnum;
+import com.example.webwork.constants.EngineEnum;
+import com.example.webwork.constants.TransmissionEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
