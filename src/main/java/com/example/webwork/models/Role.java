@@ -6,7 +6,12 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Role extends Base {
+@AttributeOverrides({
+        @AttributeOverride(name = "created", column = @Column(insertable = false, updatable = false)),
+        @AttributeOverride(name = "modified", column = @Column(insertable = false, updatable = false))
+})
+
+public class Role extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     private List<Users> users;

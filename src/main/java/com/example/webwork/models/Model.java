@@ -3,12 +3,11 @@ package com.example.webwork.models;
 import com.example.webwork.constants.CategoryEnum;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 
 @Entity
-public class Model extends Base {
+public class Model extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
@@ -26,10 +25,6 @@ public class Model extends Base {
     private int startYear;
     @Column(name="endYear", length = 11, nullable = false)
     private int endYear;
-    @Column(name="created", length = 6, nullable = false)
-    private LocalDateTime created;
-    @Column(name="modified", length = 6, nullable = false)
-    private LocalDateTime modified;
 
     protected Model() {};
 
@@ -87,21 +82,5 @@ public class Model extends Base {
 
     public void setEndYear(int endYear) {
         this.endYear = endYear;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
     }
 }

@@ -8,10 +8,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @Entity
-public class Offer extends Base {
+public class Offer extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "model_id")
@@ -35,10 +34,6 @@ public class Offer extends Base {
     private TransmissionEnum transmissionEnum;
     @Column(name="year", length = 11, nullable = false)
     private int year;
-    @Column(name="created", length = 6, nullable = false)
-    private LocalDateTime created;
-    @Column(name="modified", length = 6, nullable = false)
-    private LocalDateTime modified;
 
     protected Offer() {};
 
@@ -112,21 +107,5 @@ public class Offer extends Base {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public LocalDateTime getCreated() {
-        return created;
-    }
-
-    public void setCreated(LocalDateTime created) {
-        this.created = created;
-    }
-
-    public LocalDateTime getModified() {
-        return modified;
-    }
-
-    public void setModified(LocalDateTime modified) {
-        this.modified = modified;
     }
 }
