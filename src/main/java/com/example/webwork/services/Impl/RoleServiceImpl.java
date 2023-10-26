@@ -7,30 +7,27 @@ import com.example.webwork.models.Role;
 import com.example.webwork.repositories.RoleRepository;
 import com.example.webwork.services.RoleService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class RoleServiceImpl implements RoleService {
 
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private RoleRepository roleRepository;
+    private final ModelMapper modelMapper;
+    private final RoleRepository roleRepository;
 
-    public RoleServiceImpl(RoleRepository roleRepository) {
+    public RoleServiceImpl(RoleRepository roleRepository, ModelMapper modelMapper) {
         this.roleRepository = roleRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public RoleDto register(RoleDto role) {
         Role r = modelMapper.map(role, Role.class);
-        UUID roleId = r.getId();
+        String roleId = r.getId();
         if (roleId == null || roleRepository.findById(roleId).isEmpty()) {
             return modelMapper.map(roleRepository.save(r), RoleDto.class);
         } else {
@@ -44,12 +41,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Optional<RoleDto> get(UUID id) {
+    public Optional<RoleDto> get(String id) {
         return Optional.ofNullable(modelMapper.map(roleRepository.findById(id), RoleDto.class));
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(String id) {
         if (roleRepository.findById(id).isPresent()) {
             roleRepository.deleteById(id);
         } else {

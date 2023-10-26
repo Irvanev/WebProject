@@ -2,24 +2,23 @@ package com.example.webwork.dtos;
 
 import com.example.webwork.constants.RoleEnum;
 
-import java.util.UUID;
 
 public class RoleDto {
-    private UUID id;
+    private String id;
     private RoleEnum roleEnum;
 
     protected RoleDto() {};
 
-    public RoleDto(UUID id, RoleEnum roleEnum) {
+    public RoleDto(String id, RoleEnum roleEnum) {
         this.id = id;
         this.roleEnum = roleEnum;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -5,10 +5,9 @@ import com.example.webwork.constants.TransmissionEnum;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class OfferDto {
-    private UUID id;
+    private String id;
     private ModelDto model;
     private UsersDto users;
     private String description;
@@ -23,7 +22,7 @@ public class OfferDto {
 
     protected OfferDto() {};
 
-    public  OfferDto(UUID id, ModelDto model, UsersDto users, String description, EngineEnum engineEnum, String imageURL,
+    public  OfferDto(String id, ModelDto model, UsersDto users, String description, EngineEnum engineEnum, String imageURL,
                     int mileage, BigDecimal price, TransmissionEnum transmissionEnum, int year, LocalDateTime created,
                     LocalDateTime modified) {
         this.id = id;
@@ -40,11 +39,11 @@ public class OfferDto {
         this.modified = modified;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

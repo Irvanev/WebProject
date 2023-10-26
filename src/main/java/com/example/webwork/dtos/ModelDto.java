@@ -3,10 +3,9 @@ package com.example.webwork.dtos;
 import com.example.webwork.constants.CategoryEnum;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class ModelDto {
-    private UUID id;
+    private String id;
     private BrandDto brand;
     private String name;
     private CategoryEnum categoryEnum;
@@ -18,7 +17,7 @@ public class ModelDto {
 
     protected ModelDto() {};
 
-    public ModelDto(UUID id, BrandDto brand, String name, CategoryEnum categoryEnum, String imageURL, int startYear,
+    public ModelDto(String id, BrandDto brand, String name, CategoryEnum categoryEnum, String imageURL, int startYear,
                     int endYear, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.brand = brand;
@@ -31,11 +30,11 @@ public class ModelDto {
         this.modified = modified;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

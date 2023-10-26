@@ -7,30 +7,27 @@ import com.example.webwork.models.Offer;
 import com.example.webwork.repositories.OfferRepository;
 import com.example.webwork.services.OfferService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class OfferServiceImpl implements OfferService {
 
-    @Autowired
-    private ModelMapper modelMapper;
-    @Autowired
-    private OfferRepository offerRepository;
+    private final ModelMapper modelMapper;
+    private final OfferRepository offerRepository;
 
-    public OfferServiceImpl(OfferRepository offerRepository) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper) {
         this.offerRepository = offerRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
     public OfferDto register(OfferDto offer) {
         Offer o = modelMapper.map(offer, Offer.class);
-        UUID offerId = o.getId();
+        String offerId = o.getId();
         if (offerId == null || offerRepository.findById(offerId).isEmpty()) {
             return modelMapper.map(offerRepository.save(o), OfferDto.class);
         } else {
@@ -44,12 +41,16 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public Optional<OfferDto> get(UUID id) {
+    public Optional<OfferDto> get(String id) {
         return Optional.ofNullable(modelMapper.map(offerRepository.findById(id), OfferDto.class));
+    }
+    @Override
+    public List<OfferDto> findOfferByYear (int year) {
+        return offerRepository.findAllByYear(year).stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public void delete(UUID id) {
+    public void delete(String id) {
         if (offerRepository.findById(id).isPresent()) {
             offerRepository.deleteById(id);
         } else {

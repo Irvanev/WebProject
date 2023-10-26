@@ -8,12 +8,9 @@ import java.util.UUID;
 
 public interface OfferService {
     OfferDto register(OfferDto offer);
-
     List<OfferDto> getAll();
-
-    Optional<OfferDto> get(UUID id);
-
-    void delete(UUID id);
-
+    Optional<OfferDto> get(String id);
+    List<OfferDto> findOfferByYear(int year);
+    void delete(String id);
     OfferDto update(OfferDto offer);
 }

@@ -11,9 +11,10 @@ public interface BrandService {
 
     List<BrandDto> getAll();
 
-    Optional<BrandDto> get(UUID id);
+    Optional<BrandDto> get(String id);
+    List<BrandDto> findBrandByName(String name);
 
-    void delete(UUID id);
+    void delete(String id);
 
     BrandDto update(BrandDto brand);
 }

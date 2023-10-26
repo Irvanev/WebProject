@@ -1,15 +1,14 @@
 package com.example.webwork.dtos;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class BrandDto {
-    private UUID id;
+    private String id;
     private String name;
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    public BrandDto(UUID id, String name, LocalDateTime created, LocalDateTime modified) {
+    public BrandDto(String id, String name, LocalDateTime created, LocalDateTime modified) {
         this.id = id;
         this.name = name;
         this.created = created;
@@ -18,11 +17,11 @@ public class BrandDto {
 
     protected BrandDto() {};
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

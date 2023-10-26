@@ -12,9 +12,12 @@ public interface UsersService {
 
     List<UsersDto> getAll();
 
-    Optional<UsersDto> get(UUID id);
+    Optional<UsersDto> get(String id);
 
-    void delete(UUID id);
+    void delete(String id);
 
     UsersDto update(UsersDto users);
+    List<UsersDto> findUserByFirstName(String firstName);
+    List<UsersDto> findUserByLastName(String lastName);
+    List<UsersDto> findUsersByRole(int role);
 }

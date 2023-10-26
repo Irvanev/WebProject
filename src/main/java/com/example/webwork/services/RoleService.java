@@ -7,13 +7,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface RoleService {
-    RoleDto register(RoleDto role);
+    RoleDto register(RoleDto role); // просто имя void register(String name)
 
     List<RoleDto> getAll();
 
-    Optional<RoleDto> get(UUID id);
+    Optional<RoleDto> get(String id);
 
-    void delete(UUID id);
+    void delete(String id);
 
     RoleDto update(RoleDto role);
 }
+
