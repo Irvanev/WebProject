@@ -9,24 +9,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/roles")
+//@RequestMapping("/roles")
 public class RoleController {
-    @Autowired
-    private RoleService roleService;
-    @GetMapping()
-    Iterable<RoleDto> all() {
-        return roleService.getAll();
+    private final RoleService roleService;
+    public RoleController(RoleService roleService) {
+        this.roleService = roleService;
     }
-    @GetMapping("/{id}")
-    RoleDto get(@PathVariable UUID id) {
-        return roleService.get(id).orElseThrow(() -> new RoleNotFoundException(id));
+    @GetMapping("roles")
+    Iterable<RoleDto> getAllRoles() {
+        return roleService.getAllRoles();
     }
-    @DeleteMapping("/{id}")
-    void deleteRole(@PathVariable UUID id) {
-        roleService.delete(id);
+    @GetMapping("role/{id}")
+    RoleDto get(@PathVariable String id) {
+        return roleService.getRole(id).orElseThrow(() -> new RoleNotFoundException(id));
     }
-    @PutMapping()
-    RoleDto update(@RequestBody RoleDto role) {
-        return roleService.update(role);
+    @PostMapping
+    RoleDto createRole(@RequestBody RoleDto role) {
+        return roleService.registerRole(role);
+    }
+    @DeleteMapping("role/{id}")
+    void deleteRole(@PathVariable String id) {
+        roleService.deleteRole(id);
+    }
+    @PutMapping("role")
+    RoleDto updateRole(@RequestBody RoleDto role) {
+        return roleService.updateRole(role);
     }
 }

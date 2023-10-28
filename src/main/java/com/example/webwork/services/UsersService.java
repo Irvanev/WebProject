@@ -8,16 +8,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface UsersService {
-    UsersDto register(UsersDto users);
+    UsersDto registerUser(UsersDto users);
 
-    List<UsersDto> getAll();
+    List<UsersDto> getAllUsers();
 
-    Optional<UsersDto> get(String id);
+    Optional<UsersDto> getUser(String id);
 
-    void delete(String id);
+    void deleteUser(String id);
 
-    UsersDto update(UsersDto users);
-    List<UsersDto> findUserByFirstName(String firstName);
-    List<UsersDto> findUserByLastName(String lastName);
+    UsersDto updateUser(UsersDto users);
+    List<UsersDto> findUsersByFirstName(String firstName);
+    List<UsersDto> findUsersByLastName(String lastName);
     List<UsersDto> findUsersByRole(int role);
 }

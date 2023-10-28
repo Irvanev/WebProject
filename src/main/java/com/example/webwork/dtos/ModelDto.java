@@ -1,12 +1,18 @@
 package com.example.webwork.dtos;
 
 import com.example.webwork.constants.CategoryEnum;
+import jakarta.validation.constraints.NotEmpty;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDateTime;
 
 public class ModelDto {
     private String id;
     private BrandDto brand;
+    @NotNull
+    @NotEmpty
+    @Length(min = 2, message = "Name must be more than two characters!")
     private String name;
     private CategoryEnum categoryEnum;
     private String imageURL;

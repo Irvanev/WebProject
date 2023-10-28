@@ -1,13 +1,29 @@
 package com.example.webwork.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 import java.time.LocalDateTime;
 
 public class UsersDto {
     private String id;
     private RoleDto role;
+    @NotNull
+    @NotEmpty
+    @Length(min = 5, message = "UserName must be more than 5 characters!")
     private String userName;
+    @NotNull
+    @NotEmpty
+    @Length(min = 10, message = "Password must be more than 10 characters!")
     private String password;
+    @NotNull
+    @NotEmpty
+    @Length(min = 2, message = "FirstName must be more than 2 characters!")
     private String firstName;
+    @NotNull
+    @NotEmpty
+    @Length(min = 2, message = "LastName must be more than 2 characters!")
     private String lastName;
     private boolean isActive;
     private String imageURL;

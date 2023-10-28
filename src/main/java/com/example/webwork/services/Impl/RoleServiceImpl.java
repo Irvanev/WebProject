@@ -6,6 +6,8 @@ import com.example.webwork.dtos.RoleDto;
 import com.example.webwork.models.Role;
 import com.example.webwork.repositories.RoleRepository;
 import com.example.webwork.services.RoleService;
+import com.example.webwork.util.ValidationUtil;
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +20,26 @@ public class RoleServiceImpl implements RoleService {
 
     private final ModelMapper modelMapper;
     private final RoleRepository roleRepository;
+    private final ValidationUtil validationUtil;
 
-    public RoleServiceImpl(RoleRepository roleRepository, ModelMapper modelMapper) {
+    public RoleServiceImpl(RoleRepository roleRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
     }
 
     @Override
-    public RoleDto register(RoleDto role) {
+    public RoleDto registerRole(RoleDto role) {
+
+        if(!this.validationUtil.isValid(role)) {
+            this.validationUtil
+                    .violations(role)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Role!");
+        }
+
         Role r = modelMapper.map(role, Role.class);
         String roleId = r.getId();
         if (roleId == null || roleRepository.findById(roleId).isEmpty()) {
@@ -36,17 +50,17 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<RoleDto> getAll() {
+    public List<RoleDto> getAllRoles() {
         return roleRepository.findAll().stream().map((s) -> modelMapper.map(s, RoleDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<RoleDto> get(String id) {
+    public Optional<RoleDto> getRole(String id) {
         return Optional.ofNullable(modelMapper.map(roleRepository.findById(id), RoleDto.class));
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteRole(String id) {
         if (roleRepository.findById(id).isPresent()) {
             roleRepository.deleteById(id);
         } else {
@@ -55,7 +69,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleDto update(RoleDto role) {
+    public RoleDto updateRole(RoleDto role) {
         if (roleRepository.findById(role.getId()).isPresent()) {
             return modelMapper.map(roleRepository.save(modelMapper.map(role, Role.class)), RoleDto.class);
         } else {

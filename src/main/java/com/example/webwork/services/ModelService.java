@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ModelService {
-    ModelDto register(ModelDto model);
+    ModelDto registerModel(ModelDto model);
 
-    List<ModelDto> getAll();
+    List<ModelDto> getAllModels();
 
-    Optional<ModelDto> get(String id);
+    Optional<ModelDto> getModel(String id);
     List<ModelDto> findModelByName (String name);
 
-    void delete(String id);
+    void deleteModel(String id);
 
-    ModelDto update(ModelDto model);
+    ModelDto updateModel(ModelDto model);
 }

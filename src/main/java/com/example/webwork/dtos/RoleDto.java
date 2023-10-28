@@ -7,7 +7,7 @@ public class RoleDto {
     private String id;
     private RoleEnum roleEnum;
 
-    protected RoleDto() {};
+    public RoleDto() {};
 
     public RoleDto(String id, RoleEnum roleEnum) {
         this.id = id;

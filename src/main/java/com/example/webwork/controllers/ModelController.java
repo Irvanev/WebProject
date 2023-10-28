@@ -9,28 +9,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/models")
+//@RequestMapping("/models")
 public class ModelController {
-    @Autowired
-    private ModelService modelService;
-    @GetMapping()
-    Iterable<ModelDto> all() {
-        return modelService.getAll();
+    private final ModelService modelService;
+    public ModelController(ModelService modelService) {
+        this.modelService = modelService;
     }
-    @GetMapping("/{id}")
-    ModelDto get(@PathVariable UUID id) {
-        return modelService.get(id).orElseThrow(() -> new ModelNotFoundException(id));
+
+    @GetMapping("/models")
+    Iterable<ModelDto> getAllModels() {
+        return modelService.getAllModels();
     }
-    @PostMapping
+    @GetMapping("model/{id}")
+    ModelDto getModel(@PathVariable String id) {
+        return modelService.getModel(id).orElseThrow(() -> new ModelNotFoundException(id));
+    }
+    @PostMapping("model")
     ModelDto createModel(@RequestBody ModelDto model) {
-        return modelService.register(model);
+        return modelService.registerModel(model);
     }
-    @DeleteMapping("/{id}")
-    void deleteModel(@PathVariable UUID id) {
-        modelService.delete(id);
+    @DeleteMapping("model/{id}")
+    void deleteModel(@PathVariable String id) {
+        modelService.deleteModel(id);
     }
-    @PutMapping()
+    @PutMapping("model")
     ModelDto update(@RequestBody ModelDto model) {
-        return modelService.update(model);
+        return modelService.updateModel(model);
     }
 }

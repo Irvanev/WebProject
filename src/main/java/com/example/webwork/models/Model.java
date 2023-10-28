@@ -17,6 +17,7 @@ public class Model extends BaseEntity {
 
     @Column(name="name", length = 255, nullable = false)
     private String name;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="category", length = 11, nullable = false)
     private CategoryEnum categoryEnum;
     @Column(name="imageURL", length = 255, nullable = false)

@@ -6,6 +6,8 @@ import com.example.webwork.dtos.BrandDto;
 import com.example.webwork.models.Brand;
 import com.example.webwork.repositories.BrandRepository;
 import com.example.webwork.services.BrandService;
+import com.example.webwork.util.ValidationUtil;
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +20,23 @@ public class BrandServiceImpl implements BrandService {
 
     private final ModelMapper modelMapper;
     private final BrandRepository brandRepository;
+    private final ValidationUtil validationUtil;
 
-    public BrandServiceImpl(BrandRepository brandRepository, ModelMapper modelMapper) {
-        this.brandRepository = brandRepository;
+    public BrandServiceImpl(BrandRepository brandRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
+        this.brandRepository = brandRepository;
     }
     @Override
-    public BrandDto register(BrandDto brand) {
+    public BrandDto registerBrand(BrandDto brand) {
+        if (!this.validationUtil.isValid(brand)) {
+            this.validationUtil
+                    .violations(brand)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments!");
+        }
         Brand b = modelMapper.map(brand, Brand.class);
         String brandId = b.getId();
         if (brandId == null || brandRepository.findById(brandId).isEmpty()) {
@@ -35,12 +47,12 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public List<BrandDto> getAll() {
+    public List<BrandDto> getAllBrands() {
         return brandRepository.findAll().stream().map((s) -> modelMapper.map(s, BrandDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<BrandDto> get(String id) {
+    public Optional<BrandDto> getBrand(String id) {
         return Optional.ofNullable(modelMapper.map(brandRepository.findById(id), BrandDto.class));
     }
 
@@ -50,7 +62,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteBrand(String id) {
         if (brandRepository.findById(id).isPresent()) {
             brandRepository.deleteById(id);
         } else {
@@ -59,7 +71,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
-    public BrandDto update(BrandDto brand) {
+    public BrandDto updateBrand(BrandDto brand) {
         if (brandRepository.findById(brand.getId()).isPresent()) {
             return modelMapper.map(brandRepository.save(modelMapper.map(brand, Brand.class)), BrandDto.class);
         } else {

@@ -7,14 +7,14 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BrandService {
-    BrandDto register(BrandDto brand);
+    BrandDto registerBrand(BrandDto brand);
 
-    List<BrandDto> getAll();
+    List<BrandDto> getAllBrands();
 
-    Optional<BrandDto> get(String id);
+    Optional<BrandDto> getBrand(String id);
     List<BrandDto> findBrandByName(String name);
 
-    void delete(String id);
+    void deleteBrand(String id);
 
-    BrandDto update(BrandDto brand);
+    BrandDto updateBrand(BrandDto brand);
 }

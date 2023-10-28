@@ -2,10 +2,7 @@ package com.example.webwork.models;
 
 import com.example.webwork.constants.EngineEnum;
 import com.example.webwork.constants.TransmissionEnum;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -22,6 +19,7 @@ public class Offer extends BaseEntity {
 
     @Column(name="description", length = 500, nullable = false)
     private String description;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="engine", length = 11, nullable = false)
     private EngineEnum engineEnum;
     @Column(name="imageURL", length = 255, nullable = false)
@@ -30,6 +28,7 @@ public class Offer extends BaseEntity {
     private int mileage;
     @Column(name="price", length = 20, nullable = false)
     private BigDecimal price;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="transmission", length = 11, nullable = false)
     private TransmissionEnum transmissionEnum;
     @Column(name="year", length = 11, nullable = false)

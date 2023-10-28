@@ -1,9 +1,16 @@
 package com.example.webwork.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.validator.constraints.Length;
+
 import java.time.LocalDateTime;
 
 public class BrandDto {
     private String id;
+    @NotNull
+    @NotEmpty
+    @Length(min = 2, message = "Name must be more than two characters!")
     private String name;
     private LocalDateTime created;
     private LocalDateTime modified;

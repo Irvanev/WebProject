@@ -9,24 +9,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/offers")
+//@RequestMapping("/offers")
 public class OfferController {
-    @Autowired
-    private OfferService offerService;
-    @GetMapping()
-    Iterable<OfferDto> all() {
-        return offerService.getAll();
+    private final OfferService offerService;
+    public OfferController(OfferService offerService) {
+        this.offerService = offerService;
     }
-    @GetMapping("/{id}")
-    OfferDto get(@PathVariable UUID id) {
-        return offerService.get(id).orElseThrow(() -> new OfferNotFoundException(id));
+    @GetMapping("offers")
+    Iterable<OfferDto> getAllOffers() {
+        return offerService.getAllOffers();
     }
-    @DeleteMapping("/{id}")
-    void deleteOffer(@PathVariable UUID id) {
-        offerService.delete(id);
+    @GetMapping("offer/{id}")
+    OfferDto getOffer(@PathVariable String id) {
+        return offerService.getOffer(id).orElseThrow(() -> new OfferNotFoundException(id));
     }
-    @PutMapping()
-    OfferDto update(@RequestBody OfferDto offer) {
-        return offerService.update(offer);
+    @PostMapping("offer")
+    OfferDto createOffer(@RequestBody OfferDto offer) {
+        return offerService.registerOffer(offer);
+    }
+    @DeleteMapping("offer/{id}")
+    void deleteOffer(@PathVariable String id) {
+        offerService.deleteOffer(id);
+    }
+    @PutMapping("offer")
+    OfferDto updateOffer(@RequestBody OfferDto offer) {
+        return offerService.updateOffer(offer);
     }
 }

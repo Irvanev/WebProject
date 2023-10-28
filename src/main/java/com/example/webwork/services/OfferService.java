@@ -7,10 +7,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface OfferService {
-    OfferDto register(OfferDto offer);
-    List<OfferDto> getAll();
-    Optional<OfferDto> get(String id);
+    OfferDto registerOffer(OfferDto offer);
+    List<OfferDto> getAllOffers();
+    Optional<OfferDto> getOffer(String id);
     List<OfferDto> findOfferByYear(int year);
-    void delete(String id);
-    OfferDto update(OfferDto offer);
+    void deleteOffer(String id);
+    OfferDto updateOffer(OfferDto offer);
 }

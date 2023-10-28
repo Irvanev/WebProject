@@ -2,6 +2,9 @@ package com.example.webwork.dtos;
 
 import com.example.webwork.constants.EngineEnum;
 import com.example.webwork.constants.TransmissionEnum;
+import jakarta.validation.constraints.NotEmpty;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

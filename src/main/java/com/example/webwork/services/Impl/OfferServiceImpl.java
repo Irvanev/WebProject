@@ -6,6 +6,8 @@ import com.example.webwork.dtos.OfferDto;
 import com.example.webwork.models.Offer;
 import com.example.webwork.repositories.OfferRepository;
 import com.example.webwork.services.OfferService;
+import com.example.webwork.util.ValidationUtil;
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +20,26 @@ public class OfferServiceImpl implements OfferService {
 
     private final ModelMapper modelMapper;
     private final OfferRepository offerRepository;
+    private final ValidationUtil validationUtil;
 
-    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper) {
+    public OfferServiceImpl(OfferRepository offerRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.offerRepository = offerRepository;
         this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
     }
 
     @Override
-    public OfferDto register(OfferDto offer) {
+    public OfferDto registerOffer(OfferDto offer) {
+
+        if(!this.validationUtil.isValid(offer)) {
+            this.validationUtil
+                    .violations(offer)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Offer!");
+        }
+
         Offer o = modelMapper.map(offer, Offer.class);
         String offerId = o.getId();
         if (offerId == null || offerRepository.findById(offerId).isEmpty()) {
@@ -36,21 +50,21 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public List<OfferDto> getAll() {
+    public List<OfferDto> getAllOffers() {
         return offerRepository.findAll().stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<OfferDto> get(String id) {
+    public Optional<OfferDto> getOffer(String id) {
         return Optional.ofNullable(modelMapper.map(offerRepository.findById(id), OfferDto.class));
     }
     @Override
-    public List<OfferDto> findOfferByYear (int year) {
+    public List<OfferDto> findOfferByYear(int year) {
         return offerRepository.findAllByYear(year).stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteOffer(String id) {
         if (offerRepository.findById(id).isPresent()) {
             offerRepository.deleteById(id);
         } else {
@@ -59,7 +73,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public OfferDto update(OfferDto offer) {
+    public OfferDto updateOffer(OfferDto offer) {
         if (offerRepository.findById(offer.getId()).isPresent()) {
             return modelMapper.map(offerRepository.save(modelMapper.map(offer, Offer.class)), OfferDto.class);
         } else {

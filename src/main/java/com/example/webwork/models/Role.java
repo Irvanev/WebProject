@@ -15,6 +15,7 @@ public class Role extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     private List<Users> users;
+    @Enumerated(EnumType.ORDINAL)
     @Column(name="name", length = 11, nullable = false)
     private RoleEnum roleEnum;
 

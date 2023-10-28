@@ -6,6 +6,8 @@ import com.example.webwork.dtos.UsersDto;
 import com.example.webwork.models.Users;
 import com.example.webwork.repositories.UsersRepository;
 import com.example.webwork.services.UsersService;
+import com.example.webwork.util.ValidationUtil;
+import jakarta.validation.ConstraintViolation;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +20,26 @@ public class UsersServiceImpl implements UsersService {
 
     private final ModelMapper modelMapper;
     private final UsersRepository usersRepository;
+    private final ValidationUtil validationUtil;
 
-    public UsersServiceImpl(UsersRepository usersRepository, ModelMapper modelMapper) {
+    public UsersServiceImpl(UsersRepository usersRepository, ModelMapper modelMapper, ValidationUtil validationUtil) {
         this.usersRepository = usersRepository;
         this.modelMapper = modelMapper;
+        this.validationUtil = validationUtil;
     }
 
     @Override
-    public UsersDto register(UsersDto users) {
+    public UsersDto registerUser(UsersDto users) {
+
+        if(!this.validationUtil.isValid(users)) {
+            this.validationUtil
+                    .violations(users)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments!");
+        }
+
         Users u = modelMapper.map(users, Users.class);
         String userId = u.getId();
         if (u.getId() == null || usersRepository.findById(userId).isEmpty()) {
@@ -36,17 +50,17 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public List<UsersDto> getAll() {
+    public List<UsersDto> getAllUsers() {
         return usersRepository.findAll().stream().map((s) -> modelMapper.map(s, UsersDto.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Optional<UsersDto> get(String id) {
+    public Optional<UsersDto> getUser(String id) {
         return Optional.ofNullable(modelMapper.map(usersRepository.findById(id), UsersDto.class));
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteUser(String id) {
         if (usersRepository.findById(id).isPresent()) {
             usersRepository.deleteById(id);
         } else {
@@ -55,7 +69,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersDto update(UsersDto users) {
+    public UsersDto updateUser(UsersDto users) {
         if (usersRepository.findById(users.getId()).isPresent()) {
             return modelMapper.map(usersRepository.save(modelMapper.map(users, Users.class)), UsersDto.class);
         } else {
@@ -63,11 +77,11 @@ public class UsersServiceImpl implements UsersService {
         }
     }
     @Override
-    public List<UsersDto> findUserByFirstName(String firstName) {
+    public List<UsersDto> findUsersByFirstName(String firstName) {
         return usersRepository.findAllByFirstName(firstName).stream().map((s) -> modelMapper.map(s, UsersDto.class)).collect(Collectors.toList());
     }
     @Override
-    public List<UsersDto> findUserByLastName(String lastName) {
+    public List<UsersDto> findUsersByLastName(String lastName) {
         return usersRepository.findAllByLastName(lastName).stream().map((s) -> modelMapper.map(s, UsersDto.class)).collect(Collectors.toList());
     }
     @Override
