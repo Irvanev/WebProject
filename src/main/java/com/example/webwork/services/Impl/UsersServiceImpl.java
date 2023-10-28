@@ -37,7 +37,7 @@ public class UsersServiceImpl implements UsersService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            throw new IllegalArgumentException("Illegal arguments!");
+            throw new IllegalArgumentException("Illegal arguments in Users!");
         }
 
         Users u = modelMapper.map(users, Users.class);
@@ -70,6 +70,16 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public UsersDto updateUser(UsersDto users) {
+
+        if(!this.validationUtil.isValid(users)) {
+            this.validationUtil
+                    .violations(users)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Users for update!");
+        }
+
         if (usersRepository.findById(users.getId()).isPresent()) {
             return modelMapper.map(usersRepository.save(modelMapper.map(users, Users.class)), UsersDto.class);
         } else {

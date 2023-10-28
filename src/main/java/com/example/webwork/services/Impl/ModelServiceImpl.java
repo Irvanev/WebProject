@@ -76,6 +76,16 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public ModelDto updateModel(ModelDto model) {
+
+        if (!this.validationUtil.isValid(model)) {
+            this.validationUtil
+                    .violations(model)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllformedLocaleException("Illegal arguments in  Model for update!");
+        }
+
         if (modelRepository.findById(model.getId()).isPresent()) {
             return modelMapper.map(modelRepository.save(modelMapper.map(model, Model.class)), ModelDto.class);
         } else {

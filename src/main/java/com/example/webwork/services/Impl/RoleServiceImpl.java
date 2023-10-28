@@ -70,6 +70,16 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleDto updateRole(RoleDto role) {
+
+        if(!this.validationUtil.isValid(role)) {
+            this.validationUtil
+                    .violations(role)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Role for update!");
+        }
+
         if (roleRepository.findById(role.getId()).isPresent()) {
             return modelMapper.map(roleRepository.save(modelMapper.map(role, Role.class)), RoleDto.class);
         } else {

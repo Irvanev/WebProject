@@ -35,7 +35,7 @@ public class BrandServiceImpl implements BrandService {
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
-            throw new IllegalArgumentException("Illegal arguments!");
+            throw new IllegalArgumentException("Illegal arguments in Brand!");
         }
         Brand b = modelMapper.map(brand, Brand.class);
         String brandId = b.getId();
@@ -72,6 +72,16 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public BrandDto updateBrand(BrandDto brand) {
+
+        if(!this.validationUtil.isValid(brand)) {
+            this.validationUtil
+                    .violations(brand)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Brand for update!");
+        }
+
         if (brandRepository.findById(brand.getId()).isPresent()) {
             return modelMapper.map(brandRepository.save(modelMapper.map(brand, Brand.class)), BrandDto.class);
         } else {

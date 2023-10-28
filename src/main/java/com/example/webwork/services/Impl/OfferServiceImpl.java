@@ -74,6 +74,16 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public OfferDto updateOffer(OfferDto offer) {
+
+        if(!this.validationUtil.isValid(offer)) {
+            this.validationUtil
+                    .violations(offer)
+                    .stream()
+                    .map(ConstraintViolation::getMessage)
+                    .forEach(System.out::println);
+            throw new IllegalArgumentException("Illegal arguments in Offer for update!");
+        }
+
         if (offerRepository.findById(offer.getId()).isPresent()) {
             return modelMapper.map(offerRepository.save(modelMapper.map(offer, Offer.class)), OfferDto.class);
         } else {
