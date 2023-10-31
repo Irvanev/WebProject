@@ -12,27 +12,24 @@ import java.util.List;
 })
 
 public class Role extends BaseEntity {
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     private List<Users> users;
-    @Enumerated(EnumType.ORDINAL)
-    @Column(name="name", length = 11, nullable = false)
     private RoleEnum roleEnum;
 
     protected Role() {};
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "role", cascade = CascadeType.REMOVE)
     public List<Users> getUsers() {
         return users;
     }
-
     public void setUsers(List<Users> users) {
         this.users = users;
     }
 
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name="name", length = 11, nullable = false)
     public RoleEnum getRoleEnum() {
         return roleEnum;
     }
-
     public void setRoleEnum(RoleEnum roleEnum) {
         this.roleEnum = roleEnum;
     }
