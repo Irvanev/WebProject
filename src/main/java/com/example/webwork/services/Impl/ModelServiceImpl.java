@@ -66,6 +66,11 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
+    public List<ModelDto> findModelByBrandName(String brandName) {
+        return modelRepository.findAllByBrandName(brandName).stream().map((s) -> modelMapper.map(s, ModelDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteModel(String id) {
         if (modelRepository.findById(id).isPresent()) {
             modelRepository.deleteById(id);
