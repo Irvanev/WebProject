@@ -20,4 +20,5 @@ public interface UsersService {
     List<UsersDto> findUsersByFirstName(String firstName);
     List<UsersDto> findUsersByLastName(String lastName);
     List<UsersDto> findUsersByRole(int role);
+    List<UsersDto> findUsersByBrandName(String brandName);
 }

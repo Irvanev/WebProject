@@ -11,4 +11,5 @@ public interface ModelRepository extends JpaRepository<Model, String> {
     List<Model> findAllByName(String name);
     @Query("SELECT m FROM Model m JOIN m.brand b WHERE b.name = :brandName")
     List<Model> findAllByBrandName(@Param("brandName") String brandName);
+    List<Model> findAllByCategoryEnum(int number);
 }

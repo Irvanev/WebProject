@@ -24,6 +24,7 @@ public class BrandController {
     BrandDto getBrand(@PathVariable String id) {
         return brandService.getBrand(id).orElseThrow(() -> new BrandNotFoundException(id));
     }
+
     @DeleteMapping("brand/{id}")
     void deleteBrand(@PathVariable String id) {
         brandService.deleteBrand(id);

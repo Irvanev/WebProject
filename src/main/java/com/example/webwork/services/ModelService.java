@@ -13,6 +13,7 @@ public interface ModelService {
     Optional<ModelDto> getModel(String id);
     List<ModelDto> findModelByName (String name);
     List<ModelDto> findModelByBrandName(String brandName);
+    List<ModelDto> findModelByCategory(int number);
 
     void deleteModel(String id);
 

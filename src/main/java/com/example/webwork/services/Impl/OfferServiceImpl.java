@@ -62,6 +62,10 @@ public class OfferServiceImpl implements OfferService {
     public List<OfferDto> findOfferByYear(int year) {
         return offerRepository.findAllByYear(year).stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
     }
+    @Override
+    public List<OfferDto> findOfferByUserName(String user_name) {
+        return offerRepository.findAllByUserName(user_name).stream().map((s) -> modelMapper.map(s, OfferDto.class)).collect(Collectors.toList());
+    }
 
     @Override
     public void deleteOffer(String id) {

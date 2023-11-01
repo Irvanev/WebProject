@@ -38,6 +38,12 @@ public class UserController {
         List<UsersDto> users = userService.findUsersByLastName(lastName);
         return ResponseEntity.ok(users);
     }
+    @GetMapping("users/byBrandName")
+    public ResponseEntity<List<UsersDto>> getUsersByBrandName(@RequestParam String brandName) {
+        List<UsersDto> users = userService.findUsersByBrandName(brandName);
+        return ResponseEntity.ok(users);
+    }
+
     @GetMapping("users/byRole")
     public ResponseEntity<List<UsersDto>> getUsersByRole(@RequestParam int role) {
         List<UsersDto> users = userService.findUsersByRole(role);

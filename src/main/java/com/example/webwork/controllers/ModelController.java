@@ -33,6 +33,12 @@ public class ModelController {
         return ResponseEntity.ok(models);
     }
 
+    @GetMapping("models/byCategory")
+    public ResponseEntity<List<ModelDto>> getModelByCategory(@RequestParam int number) {
+        List<ModelDto> models = modelService.findModelByCategory(number);
+        return ResponseEntity.ok(models);
+    }
+
     @PostMapping("model")
     ModelDto createModel(@RequestBody ModelDto model) {
         return modelService.registerModel(model);

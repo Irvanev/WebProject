@@ -13,4 +13,5 @@ public interface OfferService {
     List<OfferDto> findOfferByYear(int year);
     void deleteOffer(String id);
     OfferDto updateOffer(OfferDto offer);
+    List<OfferDto> findOfferByUserName(String user_name);
 }

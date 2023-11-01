@@ -60,6 +60,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<UsersDto> findUsersByBrandName(String brandName) {
+        return usersRepository.findUsersByBrandName(brandName).stream().map((s) -> modelMapper.map(s, UsersDto.class)).collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteUser(String id) {
         if (usersRepository.findById(id).isPresent()) {
             usersRepository.deleteById(id);

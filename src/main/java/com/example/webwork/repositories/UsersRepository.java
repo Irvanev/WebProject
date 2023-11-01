@@ -13,4 +13,6 @@ public interface UsersRepository extends JpaRepository<Users, String> {
     List<Users> findAllByLastName(String lastName);
     @Query("SELECT u FROM Users u JOIN u.role r WHERE r.roleEnum = :role")
     List<Users> findUsersByRole(@Param("role") int role);
+    @Query("SELECT u from Users u JOIN u.offers o  JOIN o.model m  JOIN m.brand b WHERE b.name = :brandName")
+    List<Users> findUsersByBrandName(@Param("brandName") String brandName);
 }
