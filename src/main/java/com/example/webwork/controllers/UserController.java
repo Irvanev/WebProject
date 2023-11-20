@@ -15,8 +15,8 @@ import java.util.UUID;
 @RestController
 //@RequestMapping("/users")
 public class UserController {
-    private final UsersService userService;
-    public UserController(UsersService userService) {
+    private  UsersService userService;
+    public void setUserService(UsersService userService) {
         this.userService = userService;
     }
 

@@ -14,8 +14,8 @@ import java.util.UUID;
 @RestController
 //@RequestMapping("/offers")
 public class OfferController {
-    private final OfferService offerService;
-    public OfferController(OfferService offerService) {
+    private OfferService offerService;
+    public void setOfferService(OfferService offerService) {
         this.offerService = offerService;
     }
     @GetMapping("offers")

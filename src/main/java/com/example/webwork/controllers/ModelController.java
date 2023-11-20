@@ -6,6 +6,7 @@ import com.example.webwork.exceptions.ModelNotFoundException;
 import com.example.webwork.services.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +15,8 @@ import java.util.UUID;
 @RestController
 //@RequestMapping("/models")
 public class ModelController {
-    private final ModelService modelService;
-    public ModelController(ModelService modelService) {
+    private ModelService modelService;
+    public void setModelService(ModelService modelService) {
         this.modelService = modelService;
     }
 
