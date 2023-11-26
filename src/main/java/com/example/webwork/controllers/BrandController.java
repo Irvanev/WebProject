@@ -11,8 +11,8 @@ import java.util.UUID;
 @RestController
 //@RequestMapping("/brands")
 public class BrandController {
-    private final BrandService brandService;
-    public BrandController(BrandService brandService) {
+    private  BrandService brandService;
+    public void setBrandService(BrandService brandService) {
         this.brandService = brandService;
     }
 

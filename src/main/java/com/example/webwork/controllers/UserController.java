@@ -3,20 +3,17 @@ package com.example.webwork.controllers;
 import com.example.webwork.dtos.UsersDto;
 import com.example.webwork.exceptions.UsersNotFoundException;
 import com.example.webwork.services.UsersService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 //@RequestMapping("/users")
 public class UserController {
-    private final UsersService userService;
-    public UserController(UsersService userService) {
+
+    private  UsersService userService;
+    public void setUserService(UsersService userService) {
         this.userService = userService;
     }
 

@@ -30,7 +30,7 @@ public class UsersDto {
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    protected UsersDto() {};
+    public UsersDto() {};
 
     public UsersDto(String id, RoleDto role, String userName, String password, String firstName, String lastName,
                     boolean isActive, String imageURL, LocalDateTime created, LocalDateTime modified) {
