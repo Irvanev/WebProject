@@ -9,32 +9,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-//@RequestMapping("/brands")
+@RequestMapping("/brands")
 public class BrandController {
     private  BrandService brandService;
+    @Autowired
     public void setBrandService(BrandService brandService) {
         this.brandService = brandService;
     }
 
-    @GetMapping("/brands")
+    @GetMapping("/all")
     Iterable<BrandDto> getAllBrands() {
         return brandService.getAllBrands();
     }
-    @GetMapping("brand/{id}")
+    @GetMapping("/{id}")
     BrandDto getBrand(@PathVariable String id) {
         return brandService.getBrand(id).orElseThrow(() -> new BrandNotFoundException(id));
     }
 
-    @DeleteMapping("brand/{id}")
+    @DeleteMapping("/{id}")
     void deleteBrand(@PathVariable String id) {
         brandService.deleteBrand(id);
     }
-    @PutMapping("brand")
+    @PutMapping("/update")
     BrandDto updateBrand(@RequestBody BrandDto brand) {
         return brandService.updateBrand(brand);
     }
 
-    @PostMapping("brand")
+    @PostMapping("/add")
     BrandDto createBrand(@RequestBody BrandDto brand) {
         return brandService.registerBrand(brand);
     }
