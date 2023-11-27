@@ -32,15 +32,6 @@ public class ModelServiceImpl implements ModelService {
     @Override
     public ModelDto registerModel(ModelDto model) {
 
-        if (!this.validationUtil.isValid(model)) {
-            this.validationUtil
-                    .violations(model)
-                    .stream()
-                    .map(ConstraintViolation::getMessage)
-                    .forEach(System.out::println);
-            throw new IllformedLocaleException("Illegal arguments in  Model!");
-        }
-
         Model m = modelMapper.map(model, Model.class);
         String modelId = m.getId();
         if (modelId == null || modelRepository.findById(modelId).isEmpty()) {

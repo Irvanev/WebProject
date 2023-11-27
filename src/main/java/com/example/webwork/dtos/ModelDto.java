@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 public class ModelDto {
     private String id;
     private BrandDto brand;
-    @NotNull
     @NotEmpty
     @Length(min = 2, message = "Name must be more than two characters!")
     private String name;
@@ -21,7 +20,7 @@ public class ModelDto {
     private LocalDateTime created;
     private LocalDateTime modified;
 
-    protected ModelDto() {};
+    public ModelDto() {};
 
     public ModelDto(String id, BrandDto brand, String name, CategoryEnum categoryEnum, String imageURL, int startYear,
                     int endYear, LocalDateTime created, LocalDateTime modified) {

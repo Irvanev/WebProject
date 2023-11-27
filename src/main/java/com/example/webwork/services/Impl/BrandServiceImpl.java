@@ -29,14 +29,14 @@ public class BrandServiceImpl implements BrandService {
     }
     @Override
     public BrandDto registerBrand(BrandDto brand) {
-        if (!this.validationUtil.isValid(brand)) {
-            this.validationUtil
-                    .violations(brand)
-                    .stream()
-                    .map(ConstraintViolation::getMessage)
-                    .forEach(System.out::println);
-            throw new IllegalArgumentException("Illegal arguments in Brand!");
-        }
+//        if (!this.validationUtil.isValid(brand)) {
+//            this.validationUtil
+//                    .violations(brand)
+//                    .stream()
+//                    .map(ConstraintViolation::getMessage)
+//                    .forEach(System.out::println);
+//            throw new IllegalArgumentException("Illegal arguments in Brand!");
+//        }
         Brand b = modelMapper.map(brand, Brand.class);
         String brandId = b.getId();
         if (brandId == null || brandRepository.findById(brandId).isEmpty()) {

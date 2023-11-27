@@ -31,14 +31,14 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersDto registerUser(UsersDto users) {
 
-        if(!this.validationUtil.isValid(users)) {
+        /*if(!this.validationUtil.isValid(users)) {
             this.validationUtil
                     .violations(users)
                     .stream()
                     .map(ConstraintViolation::getMessage)
                     .forEach(System.out::println);
             throw new IllegalArgumentException("Illegal arguments in Users!");
-        }
+        }*/
 
         Users u = modelMapper.map(users, Users.class);
         String userId = u.getId();

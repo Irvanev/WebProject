@@ -22,7 +22,8 @@ public class BrandDto {
         this.modified = modified;
     }
 
-    protected BrandDto() {};
+    public BrandDto() {};
+
 
     public String getId() {
         return id;
